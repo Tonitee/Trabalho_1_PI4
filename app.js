@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const mongoose = require('mongoose')
 const port = 3000
 
@@ -10,7 +11,7 @@ const rotaUsuario = require('./rotas/usuario_rota');
 //Importa usuario_controller para verificar token
 const controller = require('./controller/usuario_controller')
 
-
+app.use(cors())
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -34,8 +35,6 @@ app.use((req,resp,next) => {
   console.log("Method: "+req.method)
   next();
 });
-
-
 
 //Uso das rotas
 app.use('/api/produtos', controller.validaToken, rotaProduto);

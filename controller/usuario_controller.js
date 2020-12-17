@@ -80,7 +80,7 @@ exports.validaUsuario = (req, res, next) => {
             if(usuario && valido){
                 const token = jwt.sign({
                     id: usuario.id
-                }, 'Sen@cr5', {expiresIn: "1h"});
+                }, 'Sen@cr5', {expiresIn: "6h"});
                 res.status(201).send({"token":token});
             }
             else{
